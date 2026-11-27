@@ -1,0 +1,8 @@
+{
+  "projeto": { "nome": "Projeto Exemplo", "cliente": "Cliente", "data": "nov/2026" },
+  "unidades": [
+    { "nome": "Unidade 01", "prazo_dias": 540 },
+    { "nome": "Unidade 02", "prazo_dias": 360 }
+  ],
+  "modulo": { "estacas": 48, "concreto_m3": 310, "aco_kg": 31000, "forma_m2": 1240 }
+}

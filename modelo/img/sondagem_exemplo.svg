@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500" font-family="Arial">
+<rect width="100%" height="100%" fill="#fff"/>
+<text x="80" y="80" font-size="40" font-weight="bold" fill="#0b4f8a">SONDAGEM SP-01</text>
+<rect x="300" y="120" width="260" height="105.0" fill="#d9c3a0" stroke="#333"/><text x="590" y="180.5" font-size="26">Aterro</text><text x="200" y="128" font-size="20">0.0 m</text>
+<rect x="300" y="225.0" width="260" height="245.0" fill="#b9a37a" stroke="#333"/><text x="590" y="355.5" font-size="26">Argila siltosa mole</text><text x="200" y="233.0" font-size="20">1.5 m</text>
+<rect x="300" y="470.0" width="260" height="280" fill="#c9b98f" stroke="#333"/><text x="590" y="618.0" font-size="26">Silte arenoso</text><text x="200" y="478.0" font-size="20">5.0 m</text>
+<rect x="300" y="750.0" width="260" height="350" fill="#e2d29b" stroke="#333"/><text x="590" y="933.0" font-size="26">Areia compacta</text><text x="200" y="758.0" font-size="20">9.0 m</text>
+<rect x="300" y="1100.0" width="260" height="280" fill="#8f8f8f" stroke="#333"/><text x="590" y="1248.0" font-size="26">Alteração de rocha</text><text x="200" y="1108.0" font-size="20">14.0 m</text>
+<text x="200" y="1388.0" font-size="20">18.0 m</text>
+<text x="1000" y="190" font-size="18" text-anchor="end">N=5</text>
+<text x="1000" y="260" font-size="18" text-anchor="end">N=10</text>
+<text x="1000" y="330" font-size="18" text-anchor="end">N=8</text>
+<text x="1000" y="400" font-size="18" text-anchor="end">N=12</text>
+<text x="1000" y="470" font-size="18" text-anchor="end">N=12</text>
+<text x="1000" y="540" font-size="18" text-anchor="end">N=17</text>
+<text x="1000" y="610" font-size="18" text-anchor="end">N=19</text>
+<text x="1000" y="680" font-size="18" text-anchor="end">N=21</text>
+<text x="1000" y="750" font-size="18" text-anchor="end">N=23</text>
+<text x="1000" y="820" font-size="18" text-anchor="end">N=23</text>
+<text x="1000" y="890" font-size="18" text-anchor="end">N=24</text>
+<text x="1000" y="960" font-size="18" text-anchor="end">N=29</text>
+<text x="1000" y="1030" font-size="18" text-anchor="end">N=28</text>
+<text x="1000" y="1100" font-size="18" text-anchor="end">N=33</text>
+<text x="1000" y="1170" font-size="18" text-anchor="end">N=35</text>
+<text x="1000" y="1240" font-size="18" text-anchor="end">N=38</text>
+<text x="1000" y="1310" font-size="18" text-anchor="end">N=36</text>
+<text x="1000" y="1380" font-size="18" text-anchor="end">N=40</text>
+</svg>
