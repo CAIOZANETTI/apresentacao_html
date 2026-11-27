@@ -1,0 +1,19 @@
+# Identidade visual padrão: fonte Share Tech + paleta laranja/bege/preto (da apresentação de referência).
+# Para outra empresa/cliente: copie esta pasta para identidades/<nome>/ e troque cores, fonte e logos.
+# Logos reais de empresas NÃO devem ir para este repositório público: coloque-os na pasta do
+# projeto (projetos/<nome>/logos/, ignorada pelo git) e declare em apresentacao.yaml -> logos.
+nome: padrao
+descricao: Share Tech, acento laranja, bege e preto
+fonte:
+  familia: Share Tech
+  arquivo: ShareTech-Regular.woff2   # SIL Open Font License 1.1 (ver OFL.txt)
+cores:
+  acento: "#b74912"
+  bege: "#c8bcac"
+  bege_claro: "#f1ece5"
+  preto: "#1a1a1a"
+  agua: "#2f6f9f"
+logos:
+  - {arquivo: logo_a.svg, nome: Empresa A}
+  - {arquivo: logo_b.svg, nome: Empresa B, fundo: escuro}
+rodape: Empresa A · Empresa B

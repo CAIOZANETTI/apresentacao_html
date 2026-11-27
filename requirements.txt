@@ -1,2 +1,5 @@
-pymupdf>=1.24
-playwright>=1.45
+pyyaml>=6.0
+pillow>=10.0
+pymupdf>=1.24        # python -m apresenta imagens (PDF -> PNG/JPG)
+playwright>=1.45     # python -m apresenta verificar (teste no navegador)
+pytest>=8.0          # python -m pytest testes

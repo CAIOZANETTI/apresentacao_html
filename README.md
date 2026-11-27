@@ -1,71 +1,77 @@
 # apresentacao_html
 
-Modelo para apresentações executivas de **projetos de engenharia** em um único arquivo HTML:
-figuras de projeto ampliáveis, números vindos de um `dados.json`, impressão em PDF com 1 slide por página.
-Nasceu da apresentação à diretoria do projeto de ETA/adutoras (10 slides) e guarda as decisões de formato
-que funcionaram ali.
+Gerador de **apresentações executivas de engenharia** em um único arquivo HTML, a partir de YAML + Python.
+A apresentação vira dados, e o código desenha os slides sempre do mesmo jeito: a mesma entrada gera
+o mesmo arquivo, byte a byte.
 
-## Por que HTML e não PowerPoint
+Feito a partir de uma apresentação real à diretoria (licitação de ETA e adutoras, 10 slides).
+A análise completa dela está em [`docs/ANALISE_REFERENCIA.md`](docs/ANALISE_REFERENCIA.md).
 
-- **Pranchas legíveis:** cada figura tem o botão **“+ ampliar”**. O zoom vai até 12x sobre a imagem
-  em alta resolução, o que permite ler cotas e textos das pranchas em plena reunião.
-- **Um arquivo só:** imagens embutidas. Abre em qualquer navegador, inclusive offline.
-- **Números consistentes:** prazos e quantitativos ficam no `dados.json` e aparecem em todos os slides
-  que os citam. Se o número muda, muda em todos.
-- **Gerado com IA + Python:** o fluxo foi feito para pedir slides à IA e regenerar rápido.
+## O que o arquivo final tem
+
+- **Slides 16:9** que escalam com a tela (cqw) e passam com rolagem/teclado. Funcionam offline.
+- **Lupa** em toda figura: roda do mouse, pinça, arraste, duplo clique, `+ − 0`, `Esc`. Figuras SVG ampliam a 2x.
+- **Gráficos SVG gerados por código**: linha do tempo, sondagem SPT, marcos de prazo, ciclo de
+  pagamento, mapa com traçados.
+- **Automático**: chapéu numerado ("05 · Seção"), número de página, rodapé com logos (embutidos uma
+  vez só), fonte da identidade embutida.
+- **Obrigatório**: título-conclusão e fonte em todo slide.
+- **Impressão**: 1 slide por página no formato widescreen (13,333 × 7,5 in).
+
+## Como fica determinístico
+
+| Garantia | Como |
+|---|---|
+| A IA não "inventa" layout | Ela escreve só **YAML** num catálogo fechado de componentes ([`docs/LINGUAGEM.md`](docs/LINGUAGEM.md)). Campo desconhecido faz a montagem parar. |
+| Número igual em todo slide | Números só no `dados.yaml`, citados como `{modulo_b.forma:milhar}`. |
+| Contas que fecham | `conferir:` no `dados.yaml` (ex.: soma das adutoras = total). Se falhar, a montagem para. |
+| Mesma saída sempre | Sem data/hora nem aleatoriedade, imagens sem recompressão, coordenadas arredondadas. SHA-256 exibido e testado. |
+| Nada cortado ou ilegível | `verificar` abre no Chromium e checa transbordamento, letra < 14 px, lupa e PDF. |
+
+## Uso
+
+```bash
+pip install -r requirements.txt
+python -m playwright install chromium          # para o "verificar"
+
+python -m apresenta novo projetos/2027_minha_obra           # copia o exemplo completo
+python -m apresenta imagens fontes/prancha.pdf --listar     # PDF -> imagens
+python -m apresenta imagens fontes/prancha.pdf -p 3 --recorte 0.05,0.10,0.70,0.85 -o projetos/2027_minha_obra/img -n corte
+# editar projetos/2027_minha_obra/apresentacao.yaml e dados.yaml
+python -m apresenta verificar projetos/2027_minha_obra      # monta + testa + capturas + PDF
+# entregar: projetos/2027_minha_obra/dist/<ARQUIVO>.html
+```
+
+O exemplo completo (10 slides fictícios com todos os componentes e gráficos):
+
+```bash
+python exemplos/completo/gerar_imagens.py    # (re)gera as imagens fictícias
+python -m apresenta verificar exemplos/completo
+```
+
+Testes: `python -m pytest testes -q`
 
 ## Estrutura
 
 ```
-modelo/                  ← NÃO editar para um projeto; copiar
-  apresentacao.html      ← modelo com CSS + JS + 9 slides de exemplo (um de cada tipo)
-  dados.json             ← números do projeto (fonte única)
-  img/                   ← figuras (SVG de exemplo)
-scripts/
-  pdf_para_imagens.py    ← PDF de projeto → PNG em alta resolução (página ou recorte)
-  empacotar.py           ← embute imagens + dados → 1 arquivo HTML final em dist/
-  verificar.py           ← testa no Chromium: erros, texto cortado, zoom, PDF 1 pág/slide
-docs/
-  GUIA_DE_ESTILO.md      ← regras de conteúdo e forma (o que a diretoria aprovou)
-  COMPONENTES.md         ← trechos HTML prontos de cada bloco
-projetos/                ← uma pasta por apresentação
-CLAUDE.md                ← instruções para a IA seguir o modelo
+apresenta/              gerador (Python)
+  montar.py             YAML -> HTML único
+  componentes.py        catálogo de componentes (grade, kpis, lista, tabela, figura…)
+  graficos.py           gráficos SVG (linha do tempo, sondagem, marcos, ciclo de pagamento, mapa)
+  formato.py            números pt-BR e referências {dados}
+  conferir.py           conferências do dados.yaml
+  verificar.py          teste no Chromium
+  imagens.py            PDF -> PNG/JPG
+  estatico/             base.css e apresentacao.js (iguais em toda apresentação)
+identidades/padrao/     fonte Share Tech (OFL), paleta, logos genéricos
+exemplos/completo/      exemplo de referência (dados fictícios)
+projetos/               suas apresentações (IGNORADO pelo git — repositório público)
+docs/                   análise da referência, linguagem YAML, guia de estilo
+testes/                 pytest
 ```
 
-## Fluxo para uma nova apresentação
+## Identidade visual
 
-```bash
-pip install -r requirements.txt
-python -m playwright install chromium         # só para o verificar.py
-
-# 1. copiar o modelo
-cp -r modelo projetos/2027_minha_obra
-
-# 2. extrair figuras dos PDFs do projeto
-python scripts/pdf_para_imagens.py fontes/fundacoes.pdf --listar
-python scripts/pdf_para_imagens.py fontes/fundacoes.pdf -p 3 --recorte 0.05,0.10,0.70,0.85 --dpi 200 \
-       -o projetos/2027_minha_obra/img -n locacao_estacas
-
-# 3. preencher dados.json e editar os slides (ou pedir à IA — ver CLAUDE.md)
-
-# 4. gerar o arquivo final e verificar
-python scripts/empacotar.py projetos/2027_minha_obra/apresentacao.html
-python scripts/verificar.py projetos/2027_minha_obra/dist/APRESENTACAO.html --capturas projetos/2027_minha_obra/dist/capturas --pdf projetos/2027_minha_obra/dist/APRESENTACAO.pdf
-```
-
-Durante a edição, abra `projetos/<nome>/apresentacao.html` direto no navegador. As imagens são
-lidas de `img/` e os dados do bloco `<script id="dados">` dentro do HTML. O `empacotar.py`
-grava o `dados.json` nesse bloco no arquivo final.
-
-## Usando a apresentação
-
-| Ação | Como |
-|---|---|
-| Próximo / anterior | → ← · PageDown PageUp · Espaço · setas no canto |
-| Primeiro / último | Home / End |
-| Abrir slide N | `arquivo.html#N` |
-| Ampliar figura | botão **+ ampliar** ou clique na figura |
-| Zoom | roda do mouse · pinça do trackpad · `+` `−` · duplo clique no ponto |
-| Mover figura ampliada | arrastar · setas · rolagem com 2 dedos |
-| Ajustar / fechar | `0` / `Esc` |
-| PDF | Ctrl+P → Salvar como PDF (paisagem, sem margens, com gráficos de fundo) |
+`identidades/padrao/identidade.yaml` define fonte, cores e logos. Para outra marca, copie a pasta e
+troque os valores. **Logos reais de empresas não vão para este repositório público.** Coloque-os em
+`projetos/<nome>/logos/` e declare-os em `apresentacao.yaml → logos`.

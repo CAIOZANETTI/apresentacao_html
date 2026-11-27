@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="1500" viewBox="0 0 1300 1500" font-family="Arial">
+<rect width="1300" height="1500" fill="#fff"/>
+<rect x="100" y="120" width="1100" height="1260" fill="none" stroke="#222" stroke-width="5"/>
+<text x="100" y="80" font-size="36" font-weight="bold">LOCAÇÃO DAS ESTACAS — EXEMPLO</text>
+<circle cx="180.0" cy="200.0" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="204.0" y="178.0" font-size="16">E01</text>
+<circle cx="180.0" cy="357.1" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="204.0" y="335.1" font-size="16">E02</text>
+<circle cx="180.0" cy="514.3" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="204.0" y="492.3" font-size="16">E03</text>
+<circle cx="180.0" cy="671.4" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="204.0" y="649.4" font-size="16">E04</text>
+<circle cx="180.0" cy="828.6" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="204.0" y="806.6" font-size="16">E05</text>
+<circle cx="180.0" cy="985.7" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="204.0" y="963.7" font-size="16">E06</text>
+<circle cx="180.0" cy="1142.9" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="204.0" y="1120.9" font-size="16">E07</text>
+<circle cx="180.0" cy="1300.0" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="204.0" y="1278.0" font-size="16">E08</text>
+<circle cx="415.0" cy="200.0" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="439.0" y="178.0" font-size="16">E09</text>
+<circle cx="415.0" cy="357.1" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="439.0" y="335.1" font-size="16">E10</text>
+<circle cx="415.0" cy="514.3" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="439.0" y="492.3" font-size="16">E11</text>
+<circle cx="415.0" cy="671.4" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="439.0" y="649.4" font-size="16">E12</text>
+<circle cx="415.0" cy="828.6" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="439.0" y="806.6" font-size="16">E13</text>
+<circle cx="415.0" cy="985.7" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="439.0" y="963.7" font-size="16">E14</text>
+<circle cx="415.0" cy="1142.9" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="439.0" y="1120.9" font-size="16">E15</text>
+<circle cx="415.0" cy="1300.0" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="439.0" y="1278.0" font-size="16">E16</text>
+<circle cx="650.0" cy="200.0" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="674.0" y="178.0" font-size="16">E17</text>
+<circle cx="650.0" cy="357.1" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="674.0" y="335.1" font-size="16">E18</text>
+<circle cx="650.0" cy="514.3" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="674.0" y="492.3" font-size="16">E19</text>
+<circle cx="650.0" cy="671.4" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="674.0" y="649.4" font-size="16">E20</text>
+<circle cx="650.0" cy="828.6" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="674.0" y="806.6" font-size="16">E21</text>
+<circle cx="650.0" cy="985.7" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="674.0" y="963.7" font-size="16">E22</text>
+<circle cx="650.0" cy="1142.9" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="674.0" y="1120.9" font-size="16">E23</text>
+<circle cx="650.0" cy="1300.0" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="674.0" y="1278.0" font-size="16">E24</text>
+<circle cx="885.0" cy="200.0" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="909.0" y="178.0" font-size="16">E25</text>
+<circle cx="885.0" cy="357.1" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="909.0" y="335.1" font-size="16">E26</text>
+<circle cx="885.0" cy="514.3" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="909.0" y="492.3" font-size="16">E27</text>
+<circle cx="885.0" cy="671.4" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="909.0" y="649.4" font-size="16">E28</text>
+<circle cx="885.0" cy="828.6" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="909.0" y="806.6" font-size="16">E29</text>
+<circle cx="885.0" cy="985.7" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="909.0" y="963.7" font-size="16">E30</text>
+<circle cx="885.0" cy="1142.9" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="909.0" y="1120.9" font-size="16">E31</text>
+<circle cx="885.0" cy="1300.0" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="909.0" y="1278.0" font-size="16">E32</text>
+<circle cx="1120.0" cy="200.0" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="1144.0" y="178.0" font-size="16">E33</text>
+<circle cx="1120.0" cy="357.1" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="1144.0" y="335.1" font-size="16">E34</text>
+<circle cx="1120.0" cy="514.3" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="1144.0" y="492.3" font-size="16">E35</text>
+<circle cx="1120.0" cy="671.4" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="1144.0" y="649.4" font-size="16">E36</text>
+<circle cx="1120.0" cy="828.6" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="1144.0" y="806.6" font-size="16">E37</text>
+<circle cx="1120.0" cy="985.7" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="1144.0" y="963.7" font-size="16">E38</text>
+<circle cx="1120.0" cy="1142.9" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="1144.0" y="1120.9" font-size="16">E39</text>
+<circle cx="1120.0" cy="1300.0" r="20" fill="none" stroke="#b42318" stroke-width="4"/>
+<text x="1144.0" y="1278.0" font-size="16">E40</text>
+</svg>

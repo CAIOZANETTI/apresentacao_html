@@ -1,0 +1,365 @@
+# EXEMPLO COMPLETO — mesma estrutura da apresentação de referência (10 slides), com dados fictícios.
+# Linguagem: docs/LINGUAGEM.md · Regras de conteúdo: docs/GUIA_DE_ESTILO.md
+# Montar:    python -m apresenta verificar exemplos/completo
+
+apresentacao:
+  titulo: "{contrato.edital} · Sistema de Abastecimento — apresentação à diretoria"
+  identidade: padrao
+  arquivo: APRESENTACAO_EXEMPLO
+  rodape: "Consórcio Exemplo — Sistema de Abastecimento, {contrato.edital}"
+
+slides:
+
+# 1 ─────────────────────────────────────────────────────────── capa
+- layout: capa
+  chapeu: "{contrato.cliente} · Licitação {contrato.edital} · Lote único"
+  titulo: Ampliação do Sistema de Abastecimento de Água da Cidade Modelo
+  subtitulos:
+    - "{unidade_01.nome} — módulos de {modulo_a.vazao} e {modulo_b.vazao} L/s"
+    - "{unidade_02.extensao:milhar} m de adutoras de água tratada"
+  destaque: "Abertura de preços · {contrato.abertura}"
+  rotulo: "Consórcio Exemplo\nApresentação à diretoria — novembro de 2026"
+  foto: {imagem: img/capa_estacao.jpg, legenda: "{unidade_01.nome} — vista de drone (imagem ilustrativa)"}
+
+# 2 ─────────────────────────────────────── KPIs + linha do tempo + citação
+- secao: Cliente e regras
+  titulo: "O cliente contrata em regime semi-integrado: projeto executivo e interferências são nossos"
+  fonte: Aviso da licitação · Comunicados 1 e 2 · Termo de Referência
+  corpo:
+    linhas: [auto, 1, auto]
+    celulas:
+      - - kpis:
+            itens:
+              - {valor: "{contrato.regime}", texto: "a contratada faz o projeto executivo a partir do básico"}
+              - {valor: Lote único, texto: "estação e adutoras num só contrato"}
+              - {valor: Recursos próprios, texto: "do cliente, programa de obras de água"}
+              - {valor: Só Brasil, texto: "empresa estabelecida no país, com acervo técnico"}
+      - - figura:
+            legenda: Linha do tempo do edital em 2026
+            moldura: false
+            grafico:
+              tipo: linha_do_tempo
+              inicio: 2026-06
+              fim: 2026-12
+              eventos:
+                - {data: 2026-06-15, texto: Termo de Referência assinado}
+                - {data: 2026-07-27, texto: Aviso publicado}
+                - {data: 2026-09-14, texto: "Comunicado 1: novo pacote de elementos e prorrogação"}
+                - {data: 2026-09-17, texto: "Respostas técnicas"}
+                - {data: 2026-09-28, texto: "Comunicado 2: só empresa estabelecida no Brasil"}
+                - {data: 2026-10-13, texto: "Data original, cancelada", estado: cancelado}
+                - {data: 2026-12-01, texto: "Propostas e abertura de preços, 10h", estado: destaque}
+      - - citacao: >-
+            Sem projetos as-built, o projeto básico vem de levantamento de campo e o cliente recomenda
+            a visita técnica. Ao assinar: plano de trabalho e garantia de execução em até 10 dias úteis.
+
+# 3 ─────────────────────────────────────── duas listas + mapa com traçados
+- secao: A obra
+  titulo: "Duas obras num contrato: uma estação de tratamento e {unidade_02.extensao:milhar} m de adutora urbana"
+  fonte: Termo de Referência, item 1 · Descritivos técnicos das Unidades 01 e 02 · imagem aérea ilustrativa
+  corpo:
+    colunas: [38, 62]
+    celulas:
+      - - grade:
+            colunas: [1.25, 1]
+            celulas:
+              - - titulo: "Unidade 01 — {unidade_01.nome}"
+                - kpis: {colunas: 1, itens: [{valor: "{unidade_01.prazo} dias", texto: prazo de execução}, {valor: "{unidade_01.vazao_nova} L/s", texto: "de clarificação nova ({modulo_a.vazao} + {modulo_b.vazao})"}]}
+                - lista:
+                    numerada: true
+                    itens: [Interligações de água bruta e potável, Produtos químicos e coletas, "Edifício do lodo, guarita, abrigos",
+                            Infraestrutura dos módulos, "**Módulo {modulo_a.vazao} L/s**", "**Módulo {modulo_b.vazao} L/s**",
+                            Válvulas e comportas, Elétrica e automação]
+              - - titulo: "Unidade 02 — Adutoras"
+                - kpis: {colunas: 1, itens: [{valor: "{unidade_02.prazo} dias", texto: prazo de execução}, {valor: "{unidade_02.extensao:milhar} m", texto: de adutora em PEAD}]}
+                - lista:
+                    numerada: true
+                    itens: ["{adutoras.a.nome} — {adutoras.a.extensao:milhar} m", "{adutoras.b.nome} — {adutoras.b.extensao:milhar} m", "{adutoras.c.nome} — {adutoras.c.extensao:milhar} m"]
+      - - figura:
+            moldura: false
+            legenda: Traçado das adutoras sobre imagem aérea
+            grafico:
+              tipo: mapa
+              imagem: img/mapa_geral.jpg
+              escurecer: 0.32
+              tracados:
+                - {cor: "#f5d742", tracejado: true, rotulo: "≈ 5,2 km entre as frentes", pontos: [[435,306],[400,410],[800,630],[718,1105],[805,1108]]}
+                - {cor: "#1e88e5", rotulo: "{adutoras.c.nome} · {adutoras.c.extensao:milhar} m · DE {adutoras.c.de}", pontos: [[995,95],[925,130],[912,230],[760,245],[583,280],[468,268],[378,296]]}
+                - {cor: "#f26a1b", rotulo: "{adutoras.a.nome} · {adutoras.a.extensao:milhar} m · DE {adutoras.a.de}", pontos: [[805,1108],[1100,1117],[1260,1125],[1340,1195],[1365,1255],[1560,1192]]}
+              rotulos: [{x: 1021, y: 105, texto: "{unidade_01.nome}"}]
+              legenda: {x: 840, y: 420}
+
+# 4 ─────────────────────────────────────── duas fotos + legenda de cores
+- secao: "Unidade 01 — {unidade_01.nome}"
+  titulo: "{unidade_01.nome} hoje e a 1ª etapa da ampliação"
+  fonte: Ortofoto de drone · legenda de etapas das pranchas de fundação
+  corpo:
+    colunas: [1, 1]
+    linhas: [1, auto]
+    celulas:
+      - [figura: {imagem: img/estacao_hoje.jpg, ajuste: cobrir, legenda: "A estação hoje, vista do drone"}]
+      - [figura: {imagem: img/estacao_intervencoes.jpg, legenda: Ortofoto com as intervenções do projeto sobrepostas}]
+      - vao: 2
+        componentes:
+          - legenda_cores:
+              - {cor: "#2f6fd6", titulo: "Azul: 1ª etapa", texto: "o que executamos agora, nesta licitação"}
+              - {cor: "#5fbf62", titulo: "Verde: existente", texto: a reformar dentro da 1ª etapa}
+              - {cor: "#a24fb0", titulo: "Roxo: 2ª etapa", texto: "prevista no projeto, executada depois"}
+
+# 5 ─────────────────────────────────────── módulo: corte + locação + KPIs + sondagem
+- secao: "Unidade 01 — módulo de {modulo_a.vazao} L/s"
+  titulo: "Módulo {modulo_a.vazao} L/s: {modulo_a.estacas} estacas num solo que não passa de NSPT 15 até a rocha"
+  fonte: "Pranchas do módulo {modulo_a.vazao} L/s · Boletim {modulo_a.furo} do relatório de sondagem"
+  corpo:
+    colunas: [73, 27]
+    linhas: [1, 12cqw]
+    celulas:
+      - [figura: {imagem: img/corte_modulo_a.svg, legenda: "Corte longitudinal do módulo — escala 1:50"}]
+      - vao_linhas: 2
+        componentes:
+          - figura:
+              legenda: "Sondagem {modulo_a.furo}, na área do módulo"
+              grafico:
+                tipo: sondagem
+                furo: "{modulo_a.furo}"
+                camadas:
+                  - {ate: 0.45}
+                  - {ate: 4.65, descricao: "argila siltosa vermelha, mole a média"}
+                  - {ate: 6.0}
+                  - {ate: 14.49, descricao: "silte argiloso amarelo, rijo"}
+                nspt: [{prof: 1, n: 6}, {prof: 2, n: 4}, {prof: 3, n: 5}, {prof: 4, n: 4}, {prof: 5, n: 7}, {prof: 6, n: 26},
+                       {prof: 7, n: 11}, {prof: 8, n: 10}, {prof: 9, n: 11}, {prof: 10, n: 12}, {prof: 11, n: 15},
+                       {prof: 12, n: 8}, {prof: 13, n: 11}, {prof: 14, n: 13}]
+                nivel_agua: 9.0
+                fundo: 1.2
+                impenetravel: 14.49
+          - leitura: "Argila mole até 4,65 m; abaixo de 6,00 m o NSPT fica entre 8 e 15 até o impenetrável, a {modulo_a.impenetravel:dec2} m. Nível d'água a 9,00 m, abaixo do fundo do módulo."
+      - - grade:
+            colunas: [30, 70]
+            celulas:
+              - [figura: {imagem: img/locacao_modulo_a.svg, legenda: "Locação das {modulo_a.estacas} estacas"}]
+              - alinhar: centro
+                componentes:
+                  - kpis:
+                      colunas: 3
+                      tamanho: menor
+                      itens:
+                        - {valor: "{modulo_a.estacas}", texto: "estacas hélice contínua, Ø 40 e 50 cm"}
+                        - {valor: 6 a 16 m, texto: de comprimento de estaca}
+                        - {valor: "{modulo_a.concreto} m³", texto: "de concreto, fck ≥ 40 MPa"}
+                        - {valor: "≈ {modulo_a.aco_t} t", texto: "de aço, taxa ≈ 100 kg/m³"}
+                        - {valor: "{modulo_a.forma:milhar} m²", texto: de forma}
+
+# 6 ─────────────────────────────────────── mesmo layout do slide 5 (comparável)
+- secao: "Unidade 01 — módulo de {modulo_b.vazao} L/s"
+  titulo: "Módulo {modulo_b.vazao} L/s: o maior volume da obra, apoiado em silte muito rijo abaixo de 9 m"
+  fonte: "Pranchas do módulo {modulo_b.vazao} L/s · Boletim {modulo_b.furo} do relatório de sondagem"
+  corpo:
+    colunas: [73, 27]
+    linhas: [1, 12cqw]
+    celulas:
+      - [figura: {imagem: img/corte_modulo_b.svg, legenda: "Corte longitudinal do módulo — escala 1:50"}]
+      - vao_linhas: 2
+        componentes:
+          - figura:
+              legenda: "Sondagem {modulo_b.furo}, na área do módulo"
+              grafico:
+                tipo: sondagem
+                furo: "{modulo_b.furo}"
+                camadas:
+                  - {ate: 0.7}
+                  - {ate: 7.9, descricao: "argila siltosa vermelha, mole a média"}
+                  - {ate: 8.8}
+                  - {ate: 15.49, descricao: "silte argiloso variegado, muito rijo", cor: "#c9b07c"}
+                nspt: [{prof: 2, n: 6}, {prof: 3, n: 4}, {prof: 4, n: 6}, {prof: 5, n: 7}, {prof: 6, n: 6}, {prof: 7, n: 4},
+                       {prof: 8, n: 9}, {prof: 9, n: 12}, {prof: 10, n: 24}, {prof: 11, n: 27}, {prof: 12, n: 26},
+                       {prof: 13, n: 25}, {prof: 14, n: 27}, {prof: 15, n: 28}]
+                nivel_agua: 7.9
+                fundo: 1.1
+                impenetravel: 15.49
+          - leitura: "Argila mole até 7,90 m; abaixo de 8,80 m o NSPT fica entre 12 e 28 até o impenetrável, a {modulo_b.impenetravel:dec2} m."
+      - - grade:
+            colunas: [30, 70]
+            celulas:
+              - [figura: {imagem: img/locacao_modulo_b.svg, legenda: "Locação das {modulo_b.estacas} estacas"}]
+              - alinhar: centro
+                componentes:
+                  - kpis:
+                      colunas: 3
+                      tamanho: menor
+                      itens:
+                        - {valor: "{modulo_b.estacas}", texto: "estacas hélice contínua, Ø 40 e 50 cm"}
+                        - {valor: 6 a 16 m, texto: de comprimento de estaca}
+                        - {valor: "{modulo_b.concreto} m³", texto: "de concreto, fck ≥ 40 MPa"}
+                        - {valor: "≈ {modulo_b.aco_t} t", texto: "de aço, taxa ≈ 100 kg/m³"}
+                        - {valor: "{modulo_b.forma:milhar} m²", texto: de forma}
+
+# 7 ─────────────────────────────────────── destaques + lista + mosaico de figuras
+- secao: "Unidade 02 — {unidade_02.nome}"
+  titulo: "{unidade_02.extensao:milhar} m de PEAD no terço da pista, sob asfalto, em avenidas com comércio"
+  fonte: Descritivo técnico das adutoras · imagens aéreas e de drone ilustrativas
+  corpo:
+    colunas: [34, 66]
+    celulas:
+      - - destaques:
+            - {valor: "{adutoras.a.extensao:milhar} m", titulo: "{adutoras.a.nome} · PEAD DE {adutoras.a.de}", texto: "Av. Principal, R. das Flores, Av. Central, R. do Comércio"}
+            - {valor: "{adutoras.b.extensao:milhar} m", titulo: "{adutoras.b.nome} · PEAD DE {adutoras.b.de}", texto: Av. Principal}
+            - {valor: "{adutoras.c.extensao:milhar} m", titulo: "{adutoras.c.nome} · PEAD DE {adutoras.c.de}", texto: "pátio da ETA, R. A, R. B, Av. Norte"}
+        - lista:
+            - "≈ 1,0 km da {adutoras.c.nome} sob linha de transmissão, sem asfalto a recompor"
+            - Meia pista liberada, com sinalização noturna
+            - Alvarás e trânsito por conta da contratada
+            - Pavimento recomposto em até 30 dias
+      - - grade:
+            colunas: [1, 1, 1, 1, 1, 1]
+            linhas: [1.25, 1]
+            espaco: justo
+            celulas:
+              - vao: 3
+                componentes:
+                  - figura:
+                      legenda: "Traçado da {adutoras.a.nome}"
+                      grafico:
+                        tipo: mapa
+                        imagem: img/mapa_adutora_a.jpg
+                        escurecer: 0.25
+                        tracados: [{cor: "#f26a1b", pontos: [[60,260],[400,220],[900,330],[1150,560],[1500,380]]}]
+              - vao: 3
+                componentes:
+                  - figura:
+                      legenda: "Traçado da {adutoras.c.nome}"
+                      grafico:
+                        tipo: mapa
+                        imagem: img/mapa_adutora_b.jpg
+                        escurecer: 0.25
+                        tracados: [{cor: "#1e88e5", pontos: [[120,600],[500,560],[900,500],[1200,420],[1300,150],[1450,120]]}]
+              - {vao: 2, componentes: [figura: {imagem: img/foto_trecho_lt.jpg, ajuste: cobrir, legenda: Trechos sob linha de transmissão}]}
+              - {vao: 2, componentes: [figura: {imagem: img/foto_avenida.jpg, ajuste: cobrir, legenda: Avenida no traçado}]}
+              - {vao: 2, componentes: [figura: {imagem: img/foto_pavimento.jpg, ajuste: cobrir, legenda: Pavimento já trincado}]}
+
+# 8 ─────────────────────────────────────── gráfico de marcos + tabela + notas
+- secao: Prazos e marcos
+  titulo: "Unidade 01 em {unidade_01.prazo} dias e Unidade 02 em {unidade_02.prazo} dias, com marcos intermediários multáveis"
+  fonte: Termo de Referência, item 7 (marcos intermediários e cronograma físico)
+  corpo:
+    colunas: [1.55, 1]
+    linhas: [auto, 1]
+    celulas:
+      - vao: 2
+        componentes:
+          - figura:
+              altura: 13cqw
+              moldura: false
+              legenda: Prazos-limite e marcos intermediários exigidos pelo cliente, em dias a partir da Ordem de Serviço
+              grafico:
+                tipo: marcos
+                escala: {max: 540, passo: 60}
+                linhas:
+                  - nome: "Unidade 01 — {unidade_01.nome}"
+                    prazo: "{unidade_01.prazo}"
+                    marcos: [{dia: 150, rotulo: MI01, mostrar_dia: true}, {dia: 240, rotulo: MI02, mostrar_dia: true},
+                             {dia: 270, rotulo: MI03, mostrar_dia: true}, {dia: 300, rotulo: MI04, mostrar_dia: true},
+                             {dia: 360, rotulo: MI05, mostrar_dia: true}, {dia: 420, rotulo: MI06, mostrar_dia: true}]
+                  - nome: "Unidade 02 — Adutoras"
+                    prazo: "{unidade_02.prazo}"
+                    marcos: [{dia: 120, rotulo: MI01, mostrar_dia: true}, {dia: 240, rotulo: MI02, mostrar_dia: true},
+                             {dia: 300, rotulo: MI03, mostrar_dia: true}]
+      - - tabela:
+            compacta: true
+            colunas: [Marco, {titulo: Dia, alinhar: direita}, O que precisa estar pronto]
+            linhas:
+              - [U1 MI01, 150, Projeto executivo do módulo compatibilizado com o fornecedor]
+              - [U1 MI02, 240, Fundações e estruturas dos dois módulos]
+              - [U1 MI03, 270, "Abrigos, edifício do lodo, guarita e urbanização"]
+              - [U1 MI04, 300, Diagramas lógicos de controle aprovados]
+              - [U1 MI05, 360, "Interligações, químicos e quadros elétricos"]
+              - [U1 MI06, 420, "Módulos de {modulo_a.vazao} e {modulo_b.vazao} L/s instalados"]
+              - [U2 MI01, 120, "{adutoras.a.nome} a 30%"]
+              - [U2 MI02, 240, "{adutoras.c.nome} a 50%"]
+              - [U2 MI03, 300, "{adutoras.a.nome} a 100%"]
+      - - notas:
+            - Os marcos só mudam com prorrogação de prazo formalizada em termo aditivo.
+            - "Os {unidade_01.prazo} dias já incluem testes, pré-operação e operação assistida."
+            - Os serviços sem marco de início definido ficam livres para o planejamento do consórcio.
+
+# 9 ─────────────────────────────────────── ciclo de pagamento + barra segmentada + blocos
+- secao: Condições comerciais
+  titulo: "Sem adiantamento: o cliente paga por medição mensal do avanço físico, em {pagamento.prazo} dias"
+  fonte: Termo de Referência, itens 5 e 12 · Anexo de equipamentos especiais com pagamento diferenciado
+  corpo:
+    colunas: [1.2, 1]
+    celulas:
+      - - figura:
+            legenda: "Ciclo de medição e pagamento, em dias a partir da Ordem de Serviço — o 1º recebimento chega perto do dia {pagamento.primeiro}"
+            grafico: {tipo: ciclo_pagamento, meses: 3, dias_medicao: "{pagamento.dias_medicao}", prazo_pagamento: "{pagamento.prazo}"}
+        - barra_segmentada:
+            titulo: "Pagamento diferenciado: só os módulos de microareia"
+            grupos:
+              - rotulo: 70% entrega na obra
+                tom: forte
+                itens: [{valor: 1, texto: documentação técnica}, {valor: 24, texto: decantação lamelar}, {valor: 15, texto: recirculação e separação},
+                        {valor: 12, texto: agitação e raspagem}, {valor: 10, texto: quadros e automação}, {valor: 5, texto: dosagem e armazenamento},
+                        {valor: 3, texto: instrumentação}]
+              - rotulo: 20% instalação
+                tom: medio
+                itens: [{valor: 4, texto: civil e posicionamento}, {valor: 8, texto: montagem mecânica}, {valor: 5, texto: elétrica e automação},
+                        {valor: 3, texto: instrumentação e acessórios}]
+              - rotulo: 10% start-up
+                tom: escuro
+                itens: [{valor: 10, texto: "start-up, operação assistida, data book"}]
+      - - lista:
+            titulo: Como o cliente paga
+            itens: ["**Sem adiantamento** previsto nos documentos", "Medição mensal pelo avanço físico, paga em **{pagamento.prazo} dias**",
+                    "1º recebimento perto do dia {pagamento.primeiro}"]
+        - lista:
+            titulo: Condições do pagamento diferenciado
+            itens: ["70% com o equipamento entregue na obra (ou em depósito com fiel depositário) e inspecionado",
+                    "10% só depois de start-up, testes, data book e as built"]
+        - barras:
+            titulo: "Demais itens: parcela final retida"
+            itens:
+              - {rotulo: "Adutoras, por trecho", partes: [{valor: 90}, {valor: 10, final: true}], nota: "trecho concluído · as built aprovado"}
+              - {rotulo: Canteiro de obras, partes: [{valor: 80}, {valor: 20, final: true}], nota: "instalado · desmobilizado"}
+        - lista:
+            titulo: Habilitação e garantia
+            itens: ["Liquidez corrente ≥ 1,50 · endividamento ≤ 0,50", "Patrimônio líquido de 20% da proposta; garantia em 10 dias úteis"]
+
+# 10 ────────────────────────────────────── síntese: 4 frentes + marcos de todas
+- secao: Síntese
+  titulo: Escopo geral e os limites que o cliente exige
+  fonte: Termo de Referência, item 7 · Pranchas dos módulos · Descritivos técnicos
+  corpo:
+    linhas: [1, auto]
+    celulas:
+      - - grade:
+            colunas: [1, 1, 1, 1]
+            celulas:
+              - estilo: faixa
+                componentes:
+                  - figura: {imagem: img/corte_modulo_a.svg, ajuste: cobrir}
+                  - lista: {titulo: "Módulo {modulo_a.vazao} L/s", itens: ["{modulo_a.estacas} estacas", "{modulo_a.concreto} m³ de concreto", "{modulo_a.forma:milhar} m² de forma"]}
+              - estilo: faixa
+                componentes:
+                  - figura: {imagem: img/corte_modulo_b.svg, ajuste: cobrir}
+                  - lista: {titulo: "Módulo {modulo_b.vazao} L/s", itens: ["{modulo_b.estacas} estacas", "{modulo_b.concreto} m³ de concreto", "{modulo_b.forma:milhar} m² de forma"]}
+              - estilo: faixa
+                componentes:
+                  - figura: {imagem: img/estacao_hoje.jpg, ajuste: cobrir}
+                  - lista: {titulo: "{unidade_01.nome} — interligações e automação", itens: [8 unidades construtivas, subestação 500 + 300 kVA, integração ao supervisório]}
+              - estilo: faixa
+                componentes:
+                  - figura: {imagem: img/foto_avenida.jpg, ajuste: cobrir}
+                  - lista: {titulo: "{unidade_02.nome}", itens: ["{unidade_02.extensao:milhar} m de PEAD", "DE {adutoras.a.de} e DE {adutoras.b.de}", 3 adutoras urbanas]}
+      - - figura:
+            altura: 19cqw
+            moldura: false
+            legenda: "Prazos-limite e marcos exigidos pelo cliente, em dias a partir da OS — não é o planejamento do consórcio, que será apresentado à parte"
+            grafico:
+              tipo: marcos
+              escala: {max: 540, passo: 90}
+              legenda: true
+              linhas:
+                - {nome: "Módulo {modulo_a.vazao} L/s", prazo: 420, marcos: [{dia: 150, rotulo: projeto, lado: baixo}, {dia: 240, rotulo: estrutura}, {dia: 420, rotulo: instalado, lado: baixo}]}
+                - {nome: "Módulo {modulo_b.vazao} L/s", prazo: 420, marcos: [{dia: 150, rotulo: projeto, lado: baixo}, {dia: 240, rotulo: estrutura}, {dia: 420, rotulo: instalado, lado: baixo}]}
+                - {nome: "{unidade_01.nome}", prazo: "{unidade_01.prazo}", marcos: [{dia: 270, rotulo: abrigos, lado: baixo}, {dia: 300, rotulo: lógica}, {dia: 360, rotulo: interligações, lado: baixo}, {dia: 540, rotulo: operação}]}
+                - {nome: Adutoras, prazo: "{unidade_02.prazo}", marcos: [{dia: 120, rotulo: "{adutoras.a.nome} 30%", lado: baixo}, {dia: 240, rotulo: "{adutoras.c.nome} 50%"}, {dia: 300, rotulo: "{adutoras.a.nome} 100%", lado: baixo}]}

@@ -1,0 +1,172 @@
+/* ==========================================================================
+   apresenta — CSS base dos slides (16:9). NÃO editar por projeto:
+   cores e fonte vêm da identidade (identidades/<nome>/identidade.yaml).
+
+   Escala: tudo em cqw/em. O slide tem container-type:inline-size, então
+   1cqw = 1% da largura do slide; texto base = 1,62cqw (~26 px em 1600 px).
+   Escala de texto (em relação ao base) — nada abaixo de .58em (~15 px):
+     título 1.72 · kpi 1.6 · subtítulo/h3 .86 · lista/texto .8 · tabela .74
+     leitura/notas .7 · legenda .62 · fonte/rodapé .58
+   ========================================================================== */
+:root{
+  --fonte:"Helvetica Neue",Arial,sans-serif;
+  --acento:#b74912; --bege:#c8bcac; --bege-claro:#f1ece5; --preto:#1a1a1a; --agua:#2f6f9f;
+  --tinta:#1a1a1a; --suave:#555; --tenue:#8a8a8a; --linha:#d4d7db; --zebra:#f6f7f8;
+  --papel:#fff; --mesa:#d9d6d2; --alerta:#d62b2b;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-snap-type:y mandatory}
+body{margin:0;padding:2vh 0;background:var(--mesa);color:var(--tinta);
+  font:10pt/1.4 var(--fonte),"Helvetica Neue",Arial,sans-serif;font-variant-numeric:lining-nums tabular-nums}
+h1,h2,h3,h4{font-weight:400;line-height:1.2;text-wrap:balance;margin:0}
+b,strong{font-weight:400;color:var(--acento)}
+
+/* ---- slide ---- */
+.slide{width:min(100vw,177.78vh);aspect-ratio:16/9;margin:0 auto 2vh;background:var(--papel);
+  position:relative;overflow:hidden;container-type:inline-size;scroll-snap-align:center;
+  box-shadow:0 1px 3px rgba(0,0,0,.13),0 8px 28px rgba(0,0,0,.10)}
+.palco{position:absolute;inset:0;padding:2.4cqw 3.2cqw 0;font-size:1.62cqw;line-height:1.32;
+  display:flex;flex-direction:column}
+.palco>header{border-bottom:2px solid var(--acento);padding-bottom:.45em;margin-bottom:.8em}
+.chapeu{font-size:.72em;letter-spacing:.12em;text-transform:uppercase;color:var(--acento);margin:0 0 .15em}
+.palco>header h2{font-size:1.72em;color:var(--preto);line-height:1.15}
+.corpo{flex:1;min-height:0;position:relative}
+.fonte{font-size:.58em;color:var(--tenue);margin:.45em 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.palco>footer{display:flex;justify-content:space-between;align-items:center;gap:1.5em;font-size:.58em;
+  color:var(--suave);border-top:1px solid var(--linha);padding:.6em 0 .8em;margin-top:.35em}
+.marca{display:inline-flex;align-items:center;gap:.8em}
+.logo{display:inline-block;height:2.6cqw;background:center/contain no-repeat;vertical-align:middle}
+.selo{display:inline-flex;align-items:center;background:var(--preto);padding:.3cqw .5cqw;border-radius:2px}
+.selo .logo{height:2.2cqw}
+.notas-orador{display:none}
+
+/* ---- grade (layout de todo slide de conteúdo) ---- */
+.grade{display:grid;height:100%;min-height:0;gap:1.4cqw}
+.grade.esp-justo{gap:.8cqw}.grade.esp-largo{gap:2.2cqw}
+.grade .grade{height:auto;flex:1}
+.celula{display:flex;flex-direction:column;gap:.9cqw;min-width:0;min-height:0}
+.celula.cel-faixa{border-top:3px solid var(--acento);padding-top:.5em}
+.celula.cel-caixa{background:var(--bege-claro);padding:.8em 1em}
+.celula.al-centro{justify-content:center}.celula.al-base{justify-content:flex-end}
+
+/* ---- texto ---- */
+.palco h3{font-size:.86em;color:var(--acento);margin:0 0 .3em}
+.texto{font-size:.8em;margin:0}
+.leitura{font-size:.7em;line-height:1.3;margin:0;border-top:1px solid var(--linha);padding-top:.4em}
+blockquote{font-size:.74em;margin:0;padding:.4em .9em;border-left:2px solid #d9a441}
+.notas{display:flex;flex-direction:column;gap:.8em;font-size:.7em;line-height:1.3}
+.notas>div{border-top:2px solid var(--acento);padding-top:.35em}
+.lista ul,.lista ol{margin:0;padding-left:1.1em;font-size:.8em}
+.lista li{margin:.22em 0}
+.lista li::marker{color:var(--acento)}
+
+/* ---- números grandes ---- */
+.kpis{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:1.2cqw}
+.kpi{border-left:3px solid var(--acento);padding:.1em 0 .1em .6em;min-width:0}
+.kpi b{display:block;font-size:1.6em;line-height:1.05;color:var(--acento)}
+.kpis-grande .kpi b{font-size:1.9em}.kpis-menor .kpi b{font-size:1.3em}
+.kpi span{display:block;font-size:.66em;color:var(--suave);line-height:1.2;margin-top:.15em}
+.destaques{display:flex;flex-direction:column;gap:.9cqw}
+.destaque{border-left:3px solid var(--acento);padding-left:.7em}
+.destaque b{font-size:1.5em;line-height:1.05;display:block}
+.destaque h4{font-size:.82em;color:var(--preto);margin:.1em 0}
+.destaque span{font-size:.62em;color:var(--suave);line-height:1.3;display:block}
+.alerta{border:2px solid var(--alerta);border-left-width:6px;padding:.45em .7em;border-radius:2px}
+.alerta b{display:block;color:var(--alerta);font-size:1em}
+.alerta span{font-size:.7em}
+
+/* ---- tabela ---- */
+.tabela table{border-collapse:collapse;width:100%;font-size:.74em;line-height:1.35}
+.tabela th{text-align:left;color:var(--acento);font-weight:400;padding:.28em .55em;
+  border-top:1px solid var(--acento);border-bottom:1px solid var(--acento);white-space:nowrap}
+.tabela td{padding:.26em .55em;border-bottom:1px solid var(--linha);vertical-align:top}
+.tabela tbody tr:last-child td{border-bottom:1px solid var(--acento)}
+.tabela.compacta table{font-size:.64em}.tabela.compacta td{padding:.16em .45em}
+.tabela tfoot td{color:var(--acento);border-bottom:1px solid var(--acento)}
+.tabela td:first-child{white-space:nowrap}
+.n{text-align:right!important;white-space:nowrap}.c{text-align:center!important}
+
+/* ---- figuras: ocupam o espaço livre da célula; imagem sem distorcer ---- */
+.fig{margin:0;min-width:0;min-height:0;flex:1;display:flex;flex-direction:column;position:relative}
+.fig.natural{flex:none}
+.quadro{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;background:#fff;
+  border:1px solid var(--linha);overflow:hidden;position:relative}
+.sem-moldura .quadro{border:0}
+.quadro>img,.quadro>svg{width:100%;height:100%;object-fit:contain;display:block}
+.natural .quadro{flex:none}
+.natural .quadro:not([style])>svg,.natural .quadro:not([style])>img{height:auto}
+.cobre .quadro>img{object-fit:cover}
+.fig figcaption{font-size:.62em;color:var(--suave);margin-top:.3em;line-height:1.25}
+.ampliavel .quadro{cursor:zoom-in}
+.ampliavel .quadro::after{content:"+ ampliar";position:absolute;right:.5em;bottom:.5em;font-size:.58em;
+  background:rgba(26,26,26,.78);color:#fff;padding:.2em .55em;border-radius:2px;opacity:.85}
+.ampliavel:hover .quadro::after{background:var(--acento);opacity:1}
+
+/* ---- legenda de cores (ex.: etapas da obra) ---- */
+.legenda-cores{display:grid;grid-template-columns:repeat(var(--n),1fr);gap:2cqw}
+.legenda-cores>div{display:grid;grid-template-columns:2.2em 1fr;align-items:center;column-gap:.7em}
+.legenda-cores i{grid-row:span 2;height:1.6em;border-radius:2px}
+.legenda-cores b{font-size:1em}
+.legenda-cores span{font-size:.72em;color:var(--suave)}
+
+/* ---- barras de percentual ---- */
+.barras h3{margin-bottom:.2em}
+.barra-pag{display:grid;grid-template-columns:10em 1fr;align-items:center;column-gap:.6em;font-size:.64em;margin:.3em 0}
+.barra-pag small{grid-column:2;font-size:.9em;color:var(--suave);margin-top:.1em}
+.barra-pag>div{display:flex;gap:2px}
+.barra-pag i{font-style:normal;background:var(--bege-claro);padding:.25em .4em;white-space:nowrap;min-width:0;text-align:center}
+.barra-pag i.fim{background:var(--acento);color:#fff}
+.segmentada .seg-cab,.segmentada .seg-barra,.segmentada .seg-legenda{display:flex;gap:2px}
+.seg-cab span{font-size:.7em;padding:0 .2em .15em;white-space:nowrap;overflow:visible}
+.seg-cab .forte{color:var(--acento)}.seg-cab .medio{color:#d98a5f}.seg-cab .escuro{color:var(--preto)}
+.seg-barra i{font-style:normal;font-size:.62em;color:#fff;text-align:center;padding:.35em 0;min-width:0;overflow:hidden}
+.seg-barra .forte{background:var(--acento)}.seg-barra .medio{background:#d98a5f}.seg-barra .escuro{background:var(--preto)}
+.seg-legenda{margin-top:.35em}
+.seg-legenda ul{list-style:none;margin:0;padding:0 .3em 0 0;font-size:.58em;line-height:1.25;min-width:0}
+.seg-legenda li{margin:.06em 0}
+
+/* ---- capa ---- */
+.capa{position:absolute;inset:0;display:grid;grid-template-columns:47% 53%}
+.capa.sem-foto{grid-template-columns:1fr}
+.capa-texto{padding:3.6cqw 3cqw 2.6cqw 3.4cqw;display:flex;flex-direction:column}
+.capa-texto .chapeu{font-size:.8em}
+.titulo-capa{font-size:2.6em;line-height:1.06;margin:.35em 0 .45em;color:var(--preto)}
+.faixa{width:5em;height:.35em;background:var(--acento);margin-bottom:1em}
+.subtitulo{font-size:1.02em;margin:0 0 .4em}
+.data-capa{display:inline-block;align-self:flex-start;margin:.7em 0 0;padding:.35em .7em;background:var(--acento);color:#fff;font-size:1em}
+.logos-capa{margin-top:auto;display:flex;align-items:center;gap:1.4em;padding-top:1em;border-top:1px solid var(--linha)}
+.logos-capa .logo{height:5.2cqw}
+.logos-capa .selo{padding:.6cqw .9cqw}
+.logos-capa .selo .logo{height:4.6cqw}
+.logos-capa .rotulo{font-size:.62em;color:var(--suave);line-height:1.3}
+.capa-foto{position:relative;overflow:hidden}
+.capa-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.capa-foto .legenda-foto{position:absolute;left:0;bottom:0;background:rgba(26,26,26,.72);color:#fff;font-size:.6em;padding:.4em .8em}
+
+/* ---- lupa (ampliação) ---- */
+.lupa{position:fixed;inset:0;z-index:20;background:#161616;touch-action:none}
+.lupa[hidden]{display:none}
+.lupa-palco{position:absolute;inset:0;overflow:hidden;cursor:grab}
+.lupa-palco.arrastando{cursor:grabbing}
+.lupa-palco>*{position:absolute;left:0;top:0;transform-origin:0 0;max-width:none;max-height:none;background:#fff;user-select:none;-webkit-user-drag:none}
+.lupa-barra{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);display:flex;gap:6px;align-items:center;
+  background:rgba(22,22,22,.88);padding:6px;border-radius:4px;font:13px/1 var(--fonte),sans-serif;color:#ddd}
+.lupa-barra button{font:inherit;font-size:15px;min-width:36px;height:32px;border:0;border-radius:3px;background:#fff;color:var(--preto);cursor:pointer}
+.lupa-barra span{padding:0 10px;max-width:50vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lupa-fechar{position:absolute;top:12px;right:14px;font:20px/1 var(--fonte),sans-serif;width:40px;height:40px;border:0;border-radius:3px;background:#fff;cursor:pointer}
+
+/* botão de impressão: discreto, aparece ao passar o mouse no canto */
+.imprimir{position:fixed;top:8px;right:10px;z-index:5;font:12px var(--fonte),sans-serif;color:var(--acento);
+  background:#fff;border:1px solid var(--linha);border-radius:4px;padding:.4em .8em;cursor:pointer;opacity:.15;transition:opacity .2s}
+.imprimir:hover,.imprimir:focus{opacity:1}
+
+/* ---- impressão: 1 slide por página, 13,333 x 7,5 in (widescreen do PowerPoint) ---- */
+@page{size:13.333in 7.5in;margin:0}
+@media print{
+  html{scroll-snap-type:none}
+  body{padding:0;background:#fff}
+  .slide{width:13.333in;height:7.5in;aspect-ratio:auto;margin:0;box-shadow:none;break-after:page}
+  .slide:last-of-type{break-after:auto}
+  .imprimir,.lupa,.ampliavel .quadro::after{display:none!important}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}

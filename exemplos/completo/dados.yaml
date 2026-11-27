@@ -1,0 +1,55 @@
+# Fonte única dos números da apresentação (DADOS FICTÍCIOS de exemplo).
+# Nos slides: "{modulo_b.forma:milhar} m²". Mudou aqui, muda em todos os slides.
+# Gere este arquivo pelo Python quando os números saírem de cálculo/planilha (pandas -> yaml).
+
+contrato:
+  edital: LE 000/2026
+  cliente: Companhia de Saneamento
+  regime: Semi-integrada
+  abertura: 01/12/2026 · 10h
+
+unidade_01:
+  nome: ETA Central
+  prazo: 540          # dias
+  vazao_nova: 960     # L/s
+
+unidade_02:
+  nome: Adutoras de água tratada
+  prazo: 360
+  extensao: 6420      # m
+
+modulo_a:
+  vazao: 360
+  estacas: 39
+  concreto: 202       # m³
+  aco_t: 20           # t
+  forma: 1068         # m²
+  furo: SP-02
+  impenetravel: 14.49
+
+modulo_b:
+  vazao: 600
+  estacas: 87
+  concreto: 478
+  aco_t: 48
+  forma: 2540
+  furo: SP-08
+  impenetravel: 15.49
+
+adutoras:
+  a: {nome: AAT 01, extensao: 3160, de: 630}
+  b: {nome: AAT 02, extensao: 337, de: 315}
+  c: {nome: AAT 03, extensao: 2923, de: 315}
+
+pagamento:
+  dias_medicao: 10
+  prazo: 30
+  primeiro: 70        # dia do 1º recebimento
+
+# Conferências: contas verificadas a cada montagem (falhou = montagem para).
+conferir:
+  - adutoras.a.extensao + adutoras.b.extensao + adutoras.c.extensao == unidade_02.extensao
+  - modulo_a.vazao + modulo_b.vazao == unidade_01.vazao_nova
+  - round(modulo_a.concreto * 0.1) == modulo_a.aco_t     # taxa de aço ≈ 100 kg/m³
+  - round(modulo_b.concreto * 0.1) == modulo_b.aco_t
+  - 30 + pagamento.dias_medicao + pagamento.prazo == pagamento.primeiro

@@ -1,86 +1,74 @@
 # Guia de estilo — apresentações à diretoria
 
-Regras tiradas das rodadas de revisão da apresentação da ETA/adutoras. Cada regra veio de um ajuste
-pedido na revisão. Siga-as antes de mostrar a primeira versão.
+Regras de conteúdo, tiradas da apresentação de referência (ver `ANALISE_REFERENCIA.md`) e das
+revisões. A forma (CSS, componentes) já está resolvida pelo gerador; este guia trata do **que** escrever.
 
-## 1. Público e objetivo
+## 1. Estrutura
 
-- O público é a **diretoria**. Ela quer escopo, números, prazos, dinheiro e decisões. Não quer o
-  detalhamento técnico do projeto.
-- **10 slides é o alvo.** Mais que 12 indica que algo deve virar anexo ou outra apresentação.
-- O último slide é **síntese + decisões pedidas**.
-- Cada slide responde a uma pergunta. O subtítulo diz qual é.
+- **10 slides é o alvo.** Mais de 12 indica que algo deve ir para anexo.
+- A sequência que funcionou: capa → cliente e regras → a obra (visão geral + mapa) → uma sequência
+  por unidade/estrutura → prazos e marcos → condições comerciais → síntese.
+- **Estruturas comparáveis (módulos, unidades, trechos) usam o mesmo layout**, copiado e com os
+  dados trocados, como os slides 5 e 6 do exemplo.
+- O último slide é a **síntese**: frentes de obra lado a lado e os limites do contrato.
 
-## 2. Texto
+## 2. Título, chapéu e fonte
 
-- **Texto grande:** corpo de 24 px, tabelas de 21 px e nada abaixo de 15 px (só fontes e notas de rodapé).
-  O slide tem 1600 x 900 px e é escalado para a tela.
-- **Sem espaço vazio sobrando.** Se sobra espaço, aumente a figura ou o texto, ou junte com outro slide.
-  Se falta espaço, divida o slide. Não reduza a fonte.
-- Use frases curtas, até 3 a 5 tópicos por bloco e números com unidade (`540 dias`, `310 m³`, `Ø 40–50 cm`).
-- Formato brasileiro: `31.000 kg`, `4,2 km`, `nov/2026`. Use `data-formato="milhar"` para números grandes.
-- Dados ainda incertos levam a marcação explícita: “a definir”, “estimado”, “~”.
+- O **título é a conclusão**, não o assunto:
+  - ❌ "Módulo 360 L/s — fundações"
+  - ✅ "Módulo 360 L/s: 39 estacas num solo que não passa de NSPT 15 até a rocha"
+- Título com até ~80 caracteres (2 linhas). Acima de 95, a montagem avisa.
+- `secao:` curta ("Unidade 01 — ETA"). O número do chapéu é automático.
+- `fonte:` é **obrigatória**: documento, prancha, item do TR, relatório. A diretoria precisa saber de onde vem cada número.
 
-## 3. Figuras de projeto
+## 3. Números
 
-- Toda figura de projeto (planta, corte, sondagem, imagem de satélite, gráfico) leva `figure.zoom`,
-  o que gera o botão “+ ampliar”.
-- **Não comprima.** Use PNG a 200 dpi (250–300 dpi para detalhes com texto pequeno). A versão de
-  referência tinha cerca de 6 MB. Para reduzir o arquivo, **recorte** a região de interesse.
-- **Recorte** a região que importa (`--recorte`). Não use a prancha inteira com carimbo e margens.
-- Em cada módulo/estrutura, mostre **planta + corte longitudinal**, mais a sondagem quando houver fundação.
-- Para imagens de satélite, realce o traçado (linha grossa e cor forte) e marque as interferências
-  (ex.: “~1 km sob linha de transmissão”).
-- A legenda (`figcaption`) diz o que é a figura. A fonte vai em `.fonte` no pé do slide.
+- **Todo número vem do `dados.yaml`**, citado como `{chave:formato}`. Não digite o mesmo número em dois slides.
+- Use `conferir:` para as contas que precisam fechar: somas de extensões, vazões, taxas
+  (aço ≈ 100 kg/m³), percentuais = 100%, dia do 1º pagamento.
+- Use unidade sempre (`540 dias`, `202 m³`, `Ø 40 e 50 cm`) e o formato brasileiro (o gerador cuida disso).
+- Valor aproximado leva `≈`; dado ainda não confirmado leva "a definir" e entra em `PENDENCIAS.md`.
+- Não invente números. Sem dado, sem número.
 
-## 4. Layout
+## 4. Figuras
 
-- **Blocos do mesmo tamanho** lado a lado (`grade-2`, `grade-3`). Na revisão, três blocos de tamanhos
-  diferentes foram reprovados.
-- Use tabelas limpas: cabeçalho azul, linhas zebradas, números alinhados à direita e unidade na célula.
-  Não use grade pesada.
-- Use **KPIs** (`.kpis`) no topo para os 3 ou 4 números principais.
-- Para duas unidades, duas linhas ou dois módulos, mostre **lado a lado com a mesma estrutura**
-  (mesma tabela, mesmas linhas), para facilitar a comparação.
+- Toda figura é ampliável (padrão). Use figuras de **alta resolução e recortadas**: o recorte
+  reduz o arquivo sem perder nitidez.
+  - Pranchas: `python -m apresenta imagens prancha.pdf -p 3 --recorte x0,y0,x1,y1 --dpi 200` (PNG)
+  - Fotos/ortofotos/satélite: JPG de até ~1.600 px de largura (`--formato jpg`)
+- Para estrutura com fundação, mostre **corte + locação + KPIs + sondagem com leitura**.
+- Em mapas, traçados com cor forte, contorno branco e legenda. **Todo item listado deve aparecer no mapa**
+  (na referência, uma adutora estava na lista e não no mapa).
+- Use as cores das pranchas na legenda de etapas (azul 1ª etapa, verde existente, roxo 2ª etapa).
+- `legenda` diz o que é a figura. A origem vai na `fonte` do slide.
 
-## 5. Cores com significado
+## 5. Densidade e legibilidade
 
-| Cor | Uso |
-|---|---|
-| Azul (`--azul`) | Fase 1, em execução, o que está sendo contratado agora |
-| Cinza (`--cinza`) | Fase 2, futuro, fora do escopo atual |
-| Vermelho tracejado | Marco **obrigatório do contrato** |
-| Laranja | Atenção, regra que vale só para parte do escopo |
-| Verde | Concluído / ok |
+- O verificador recusa letra abaixo de 14 px numa tela de 1.600 px. Se não cabe, **divida o slide**:
+  não reduza a fonte nem esconda informação.
+- Tabelas com mais de 8 linhas: `compacta: true`, ou mova a tabela para um anexo.
+- Um slide denso (como o de condições comerciais) é aceitável **uma vez**. Os demais devem respirar.
+- Evite espaço vazio grande dentro de uma célula: reorganize as `linhas` e `colunas` da grade.
 
-Não use cor só para decorar.
+## 6. Prazos e dinheiro
 
-## 6. Prazos e cronograma
-
-- Deixe claro **de quem é o prazo**. O slide de prazos mostra os **limites obrigatórios do cliente**
-  (subtítulo: “não é o planejamento detalhado”). O planejamento interno vai em outra apresentação.
+- Deixe claro **de quem é o prazo**: o gráfico de marcos mostra os limites do cliente, com o aviso
+  "não é o planejamento do consórcio, que será apresentado à parte".
 - Não misture o cronograma de fornecedores com o do cliente.
-- Para unidades com prazos diferentes (ex.: 540 e 360 dias), use uma barra para cada, com o marco de entrega.
-- Para frentes em paralelo, use uma linha por frente na mesma escala de meses.
+- No fluxo de pagamento, mostre **quando entra o 1º dinheiro** (ciclo de pagamento) e o que fica retido (barras).
+- Para condição de pagamento que vale só para parte do escopo (ex.: equipamentos especiais),
+  diga a quais itens se aplica no `titulo` do componente.
 
-## 7. Dinheiro
+## 7. O que evitar (já foi retirado em revisões)
 
-- O fluxo de pagamento padrão vai em etapas numeradas (`.etapas`): adiantamento? medição? prazo? 1º recebimento?
-- Destaque o **impacto no caixa** (ex.: “1º recebimento ~dia 70”).
-- Para condições especiais (ex.: 70/20/10 para equipamentos), use a barra de percentuais (`.pct`)
-  com as **condições de cada parcela** e uma etiqueta dizendo **a que itens se aplica**.
-
-## 8. O que evitar (já foi retirado em revisão)
-
-- Matriz de riscos genérica (“pontos de atenção”), a menos que seja pedida.
-- Cronograma de fornecedores no deck da diretoria.
+- Matriz genérica de riscos ("pontos de atenção"), a menos que seja pedida.
+- Cronograma de fornecedores no material da diretoria.
 - Texto pequeno para caber mais conteúdo.
-- Blocos vazios ou desproporcionais.
+- Blocos de tamanhos diferentes lado a lado sem motivo.
 
-## 9. Antes de entregar
+## 8. Antes de entregar
 
-- [ ] `python scripts/verificar.py ...` sem problemas (console, texto cortado, zoom, PDF com N páginas)
-- [ ] Capturas revisadas: nenhum slide com espaço vazio sobrando ou texto apertado
-- [ ] Todos os números vêm do `dados.json` ou têm fonte citada
-- [ ] Documentos de origem (editais, anexos, PDFs) guardados em `projetos/<nome>/fontes/` para rastreabilidade
-- [ ] Pendências marcadas como “a definir” e listadas no `projetos/<nome>/PENDENCIAS.md`
+- [ ] `python -m apresenta verificar projetos/<nome>` termina com **OK**
+- [ ] Capturas em `dist/capturas/` revisadas uma a uma
+- [ ] Nenhum aviso de dado não usado (ou justificado)
+- [ ] Documentos de origem em `projetos/<nome>/fontes/`; pendências em `PENDENCIAS.md`

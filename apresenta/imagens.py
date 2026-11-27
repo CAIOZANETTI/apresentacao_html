@@ -5,22 +5,23 @@ para usar como figuras ampliáveis na apresentação.
 Exemplos
 --------
 # listar páginas e tamanhos
-python scripts/pdf_para_imagens.py projeto.pdf --listar
+python -m apresenta imagens projeto.pdf --listar
 
 # página 3 inteira a 200 dpi
-python scripts/pdf_para_imagens.py projeto.pdf -p 3 --dpi 200 -o projetos/minha/img -n planta
+python -m apresenta imagens projeto.pdf -p 3 --dpi 200 -o projetos/minha/img -n planta
 
 # recorte da página 5 (frações da página: x0,y0,x1,y1 — 0 = esquerda/topo, 1 = direita/base)
-python scripts/pdf_para_imagens.py projeto.pdf -p 5 --recorte 0.05,0.10,0.70,0.85 -o projetos/minha/img -n corte_AA
+python -m apresenta imagens projeto.pdf -p 5 --recorte 0.05,0.10,0.70,0.85 -o projetos/minha/img -n corte_AA
 
 # várias páginas
-python scripts/pdf_para_imagens.py projeto.pdf -p 1,2,7-9 -o projetos/minha/img
+python -m apresenta imagens projeto.pdf -p 1,2,7-9 -o projetos/minha/img
 
 Dicas
 -----
 - 200 dpi é um bom padrão para pranchas A1/A0; 250–300 dpi para detalhes com texto pequeno.
 - Recorte antes de aumentar o dpi: o tamanho do arquivo cresce com a área.
-- Não comprima em JPEG: PNG mantém linhas e textos nítidos na ampliação.
+- Desenhos (pranchas, cortes): PNG mantém linhas e textos nítidos na ampliação.
+- Fotos e ortofotos: --formato jpg (bem menor, sem perda visível).
 """
 from __future__ import annotations
 
@@ -47,7 +48,7 @@ def faixa_paginas(texto: str, total: int) -> list[int]:
 
 
 def renderiza(pdf: Path, pagina: int, dpi: int, recorte: tuple[float, float, float, float] | None,
-              saida: Path, rotacao: int = 0) -> Path:
+              saida: Path, rotacao: int = 0, qualidade: int = 88) -> Path:
     doc = pymupdf.open(pdf)
     pg = doc[pagina - 1]
     clip = None
@@ -59,13 +60,16 @@ def renderiza(pdf: Path, pagina: int, dpi: int, recorte: tuple[float, float, flo
     mat = pymupdf.Matrix(dpi / 72, dpi / 72).prerotate(rotacao)
     pix = pg.get_pixmap(matrix=mat, clip=clip, alpha=False)
     saida.parent.mkdir(parents=True, exist_ok=True)
-    pix.save(saida)
+    if saida.suffix == ".jpg":
+        pix.save(saida, jpg_quality=qualidade)
+    else:
+        pix.save(saida)
     kb = saida.stat().st_size / 1024
     print(f"  {saida}  {pix.width}x{pix.height}px  {kb:,.0f} KB")
     return saida
 
 
-def main() -> None:
+def main(argv=None) -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("pdf", type=Path)
     ap.add_argument("-p", "--paginas", default="1", help="ex.: 1,3,5-7 (base 1)")
@@ -74,8 +78,11 @@ def main() -> None:
     ap.add_argument("--rotacao", type=int, default=0, choices=[0, 90, 180, 270])
     ap.add_argument("-o", "--saida", type=Path, default=Path("img"))
     ap.add_argument("-n", "--nome", help="nome base do arquivo (padrão: nome do PDF)")
+    ap.add_argument("--formato", choices=["png", "jpg"], default="png",
+                    help="png (desenhos, padrão) ou jpg (fotos/ortofotos; arquivo menor)")
+    ap.add_argument("--qualidade", type=int, default=88, help="qualidade do jpg (padrão 88)")
     ap.add_argument("--listar", action="store_true", help="só lista páginas e tamanhos")
-    a = ap.parse_args()
+    a = ap.parse_args(argv)
 
     doc = pymupdf.open(a.pdf)
     if a.listar:
@@ -93,8 +100,8 @@ def main() -> None:
     paginas = faixa_paginas(a.paginas, doc.page_count)
     base = a.nome or a.pdf.stem
     for p in paginas:
-        nome = f"{base}.png" if len(paginas) == 1 else f"{base}_p{p:02d}.png"
-        renderiza(a.pdf, p, a.dpi, recorte, a.saida / nome, a.rotacao)
+        nome = f"{base}.{a.formato}" if len(paginas) == 1 else f"{base}_p{p:02d}.{a.formato}"
+        renderiza(a.pdf, p, a.dpi, recorte, a.saida / nome, a.rotacao, a.qualidade)
 
 
 if __name__ == "__main__":

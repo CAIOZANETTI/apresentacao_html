@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2200" height="900" viewBox="0 0 2200 900" font-family="Arial">
+<rect width="2200" height="900" fill="#fff"/>
+<text x="80" y="70" font-size="40" font-weight="bold">MÓDULO A — CORTE LONGITUDINAL — EXEMPLO FICTÍCIO</text>
+<rect x="100" y="200" width="2000" height="80" fill="#e5e5e5" stroke="#222" stroke-width="4"/>
+<rect x="160" y="110" width="22" height="90" fill="#fff" stroke="#222" stroke-width="3"/>
+<text x="190" y="150" font-size="18">PAR 01</text>
+<rect x="540" y="110" width="22" height="90" fill="#fff" stroke="#222" stroke-width="3"/>
+<text x="570" y="150" font-size="18">PAR 02</text>
+<rect x="920" y="110" width="22" height="90" fill="#fff" stroke="#222" stroke-width="3"/>
+<text x="950" y="150" font-size="18">PAR 03</text>
+<rect x="1300" y="110" width="22" height="90" fill="#fff" stroke="#222" stroke-width="3"/>
+<text x="1330" y="150" font-size="18">PAR 04</text>
+<rect x="1680" y="110" width="22" height="90" fill="#fff" stroke="#222" stroke-width="3"/>
+<text x="1710" y="150" font-size="18">PAR 05</text>
+<rect x="2060" y="110" width="22" height="90" fill="#fff" stroke="#222" stroke-width="3"/>
+<text x="2090" y="150" font-size="18">PAR 06</text>
+<rect x="138.0" y="280" width="24" height="288" fill="#bbb" stroke="#222" stroke-width="2"/>
+<text x="166.0" y="578" font-size="16">L=8 m</text>
+<rect x="375.5" y="280" width="24" height="432" fill="#bbb" stroke="#222" stroke-width="2"/>
+<text x="403.5" y="722" font-size="16">L=12 m</text>
+<rect x="613.0" y="280" width="24" height="576" fill="#bbb" stroke="#222" stroke-width="2"/>
+<text x="641.0" y="866" font-size="16">L=16 m</text>
+<rect x="850.5" y="280" width="24" height="288" fill="#bbb" stroke="#222" stroke-width="2"/>
+<text x="878.5" y="578" font-size="16">L=8 m</text>
+<rect x="1088.0" y="280" width="24" height="432" fill="#bbb" stroke="#222" stroke-width="2"/>
+<text x="1116.0" y="722" font-size="16">L=12 m</text>
+<rect x="1325.5" y="280" width="24" height="576" fill="#bbb" stroke="#222" stroke-width="2"/>
+<text x="1353.5" y="866" font-size="16">L=16 m</text>
+<rect x="1563.0" y="280" width="24" height="288" fill="#bbb" stroke="#222" stroke-width="2"/>
+<text x="1591.0" y="578" font-size="16">L=8 m</text>
+<rect x="1800.5" y="280" width="24" height="432" fill="#bbb" stroke="#222" stroke-width="2"/>
+<text x="1828.5" y="722" font-size="16">L=12 m</text>
+<rect x="2038.0" y="280" width="24" height="576" fill="#bbb" stroke="#222" stroke-width="2"/>
+<text x="2066.0" y="866" font-size="16">L=16 m</text>
+<line x1="60" y1="280" x2="2140" y2="280" stroke="#7a5230" stroke-width="4" stroke-dasharray="20 10"/>
+<text x="1700" y="860" font-size="26">CORTE A-A · ESC. 1:50</text></svg>

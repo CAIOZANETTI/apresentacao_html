@@ -1,5 +1,13 @@
+# Saídas geradas (o HTML final é entregue, não versionado)
 dist/
 __pycache__/
 *.pyc
 .venv/
+.pytest_cache/
 .DS_Store
+
+# Repositório PÚBLICO: projetos reais (dados de cliente, logos, fotos, editais) ficam fora do git.
+# Para versionar um projeto, use um repositório privado separado.
+projetos/*
+!projetos/.gitkeep
+!projetos/LEIA-ME.md
